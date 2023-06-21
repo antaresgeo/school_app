@@ -11,7 +11,7 @@ Esta es una aplicación Django llamada School App, la cual permite administrar i
 1. Clona el repositorio de la aplicación desde GitHub:
 
 ```bash
-git clone <URL_DEL_REPOSITORIO>
+git clone [<URL_DEL_REPOSITORIO>](https://github.com/antaresgeo/school_app.git)
 ```
 
 2. Navega al directorio raíz de la aplicación:
