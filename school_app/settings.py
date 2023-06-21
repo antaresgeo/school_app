@@ -160,5 +160,5 @@ EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'schooltestct@gmail.com'
-EMAIL_HOST_PASSWORD = '@SchoolTest23'
+EMAIL_HOST_PASSWORD = 'xechhrnxssmrixkh'
 DEFAULT_FROM_EMAIL = 'schooltestct@gmail.com'
