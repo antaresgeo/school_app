@@ -17,7 +17,7 @@ git clone https://github.com/antaresgeo/school_app.git
 2. Navega al directorio raíz de la aplicación:
 
 ```bash
-cd school-app
+cd school_app
 ```
 
 3. Construye y levanta los contenedores Docker ejecutando el siguiente comando:
