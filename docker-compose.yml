@@ -21,6 +21,8 @@ services:
   celery_worker:
     container_name: dev_celery
     build: .
+    volumes:
+      - .:/app
     command: celery -A school_app worker --loglevel=info
     depends_on:
       - web
