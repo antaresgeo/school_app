@@ -1,0 +1,5 @@
+venv
+.idea
+__pycache__
+media/documents/*
+db.sqlite3

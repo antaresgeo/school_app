@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<script>
+    function on_change_theme (evn)
+    {
+        const html_tag = document.documentElement;
+        const btn = document.getElementById('change-theme')
+
+        if (html_tag.classList.contains("dark")) {
+            html_tag.classList.remove("dark");
+            html_tag.classList.add("light");
+            btn.textContent = "dark_mode";
+            localStorage.setItem('theme', 'light');
+        }
+        else if (html_tag.classList.contains("light"))
+        {
+            html_tag.classList.remove("light");
+            html_tag.classList.add("dark");
+            btn.textContent = "light_mode";
+            localStorage.setItem('theme', 'dark');
+        }
+    }
+</script>
+{% endblock %}
+{% block content %}
+<header>
+    <a href="/" class="logo">School App</a>
+    <div style="flex: auto"></div>
+    <span>Hi {{ user.username }}!</span>
+    <a href="{% url 'admin:index' %}" class="btn on-primary">Admin</a>
+    <a href="{% url 'logout' %}" class="btn on-primary">Sign out</a>
+    <button id="change-theme" class="on-primary small mso" onclick="on_change_theme()">light_mode</button>
+</header>
+<main class="container col" style="margin: 0 auto">
+    {% block internal_content %}{% endblock %}
+</main>
+{% endblock %}

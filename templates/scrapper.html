@@ -1,0 +1,88 @@
+{% extends 'internal.html' %}
+{% load static %}
+{% load importer_extras %}
+
+{% block internal_content %}
+<div style="margin: 1rem 0">
+    <a class="btn small primary mso" href="{% url 'home' %}">arrow_back</a>
+    <span class="primary-text" style="font-size: 2em; margin-left: 1rem">
+        Import started on {{ instance.start_date}}
+    </span>
+</div>
+<div class="container start w100 h100">
+    <div class="box surface-container" style="min-width: 360px">
+        <h1>Tabla de Cursos</h1>
+        <a href="#" class="btn primary" id="execute-task">Run scrapper</a>
+    <div id="message-container" style="margin: 1rem"></div>
+    {% csrf_token %}
+   <script>
+       function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        document.getElementById('execute-task').addEventListener('click', function(e) {
+            e.preventDefault();  // Prevent default redirection
+
+            const csrftoken = getCookie('csrftoken');
+
+            fetch("{% url 'run_scrapper' %}", {
+                method: "POST",
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest",  // Indicates AJAX request
+                    "X-CSRFToken": csrftoken  // Include CSRF token in request headers
+                }
+            })
+            .then(function(response) {
+                if (response.ok) {
+                    if (response.status === 200) {
+                        response.text().then(function(message) {
+                            console.log(message);
+                            document.getElementById('message-container').textContent = message;
+                        });
+                    } else {
+                        console.error("Error executing asynchronous task");
+                        // Handle task error here if needed
+                    }
+                } else {
+                    console.error("Error executing asynchronous task");
+                    // Handle task error here if needed
+                }
+            })
+            .catch(function(error) {
+                console.error("Error executing asynchronous task", error);
+                // Handle task error here if needed
+            });
+        });
+    </script>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for course in courses %}
+            <tr>
+                <td>{{ course.id }}</td>
+                <td>{{ course.name }}</td>
+                <td>{{ course.description }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    </div>
+</div>
+{% endblock %}

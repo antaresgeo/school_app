@@ -1,0 +1,60 @@
+{% extends 'internal.html' %}
+{% load static %}
+{% load importer_extras %}
+
+{% block internal_content %}
+<div style="margin: 1rem 0">
+    <a class="btn small primary mso" href="{% url 'home' %}">arrow_back</a>
+    <span class="primary-text" style="font-size: 2em; margin-left: 1rem">{{ model_name }} Imports</span>
+</div>
+<div class="container start w100 h100">
+  <div class="container col center w100 box surface-container" style="flex: auto">
+    {% if documents.count == 0 %}
+    <span>No Imports found</span>
+    <img src="{% static 'No data-cuate.png' %}" alt="No Data" width="360px" />
+    {% else %}
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Status</th>
+          <th>Step</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Total lines</th>
+          <th>Imported lines</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for import_instance in imports %}
+        <tr>
+          <td>{{ import_instance.id }}</td>
+          <td>{{ import_instance.get_status_display }}</td>
+          <td>{{ import_instance.get_step_display }}</td>
+          <td>{{ import_instance.start_date }}</td>
+          <td>{% if import_instance.end_date is not None %}{{ import_instance.end_date }}{% else %}-{% endif %}</td>
+          <td>{% if import_instance.total_lines is not None %}{{ import_instance.total_lines }}{% else %}-{% endif %}</td>
+          <td>{{ import_instance.imported_lines }}</td>
+          <td>
+            <a class="btn primary small mso"
+              href="{% url namespace|urlc:'import' import_id=import_instance.id %}">search</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endif %}
+  </div>
+  <div class="container col" style="min-width: 360px">
+    <div class="box surface-container">
+      Importer template <a href="{% url namespace|urlc:'importer_file' %}">Importer {{ model_name }}</a>
+    </div>
+    <form method="post" enctype="multipart/form-data" class="box surface-container">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="w100 primary">Upload</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

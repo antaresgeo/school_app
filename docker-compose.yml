@@ -1,0 +1,41 @@
+version: '3.7'
+services:
+  nginx:
+    container_name: dev_web
+    restart: on-failure
+    image: nginx:1.19.8
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - static_volume:/app/static
+      - media_volume:/app/media
+    ports:
+      - 8000:80
+    depends_on:
+      - web
+
+  redis:
+    container_name: dev_redis
+    image: redis:latest
+    restart: always
+
+  celery_worker:
+    container_name: dev_celery
+    build: .
+    command: celery -A school_app worker --loglevel=info
+    depends_on:
+      - web
+      - redis
+
+  web:
+    container_name: dev_backend
+    build: .
+    restart: always
+    command: python manage.py init_app --start-server
+    volumes:
+     - .:/app
+     - static_volume:/app/static
+     - media_volume:/app/media
+
+volumes:
+  static_volume:
+  media_volume:

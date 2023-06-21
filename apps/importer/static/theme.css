@@ -1,0 +1,1019 @@
+.dark {
+  --primary: 174, 234, 191;
+  --primary-gradient: 133, 224, 159;
+  --on-primary: 10, 41, 19;
+  --primary-container: 42, 162, 76;
+  --on-primary-container: 255, 255, 255;
+  --primary-fixed: 214, 245, 223;
+  --primary-fixed-dim: 174, 234, 191;
+  --inverse-primary: 174, 234, 191;
+  --error: 255, 153, 153;
+  --error-gradient: 255, 102, 102;
+  --on-error: 51, 0, 0;
+  --error-container: 204, 0, 0;
+  --on-error-container: 255, 255, 255;
+  --warning: 255, 255, 153;
+  --warning-gradient: 255, 255, 102;
+  --on-warning: 51, 51, 0;
+  --warning-container: 204, 204, 0;
+  --on-warning-container: 255, 255, 255;
+  --info: 153, 153, 255;
+  --info-gradient: 102, 102, 255;
+  --on-info: 0, 0, 51;
+  --info-container: 0, 0, 204;
+  --on-info-container: 255, 255, 255;
+  --success: 153, 255, 153;
+  --success-gradient: 102, 255, 102;
+  --on-success: 0, 51, 0;
+  --success-container: 0, 204, 0;
+  --on-success-container: 255, 255, 255;
+  --surface-dim: 15, 15, 15;
+  --surface: 15, 15, 15;
+  --surface-bright: 61, 61, 61;
+  --surface-container-lowest: 10, 10, 10;
+  --surface-container-low: 26, 26, 26;
+  --surface-container: 31, 31, 31;
+  --surface-container-high: 43, 43, 43;
+  --surface-container-highest: 56, 56, 56;
+  --on-surface: 230, 230, 230;
+  --inverse-surface: 242, 242, 242;
+  --on-inverse-surface: 51, 51, 51;
+  --on-surface-variant: 204, 202, 206;
+  --outline: 128, 122, 133;
+  --outline-variant: 204, 202, 206;
+}
+
+.light {
+  --primary: 42, 162, 76;
+  --primary-gradient: 52, 203, 95;
+  --on-primary: 255, 255, 255;
+  --primary-container: 214, 245, 223;
+  --on-primary-container: 10, 41, 19;
+  --primary-fixed: 214, 245, 223;
+  --primary-fixed-dim: 174, 234, 191;
+  --inverse-primary: 174, 234, 191;
+  --error: 204, 0, 0;
+  --error-gradient: 255, 0, 0;
+  --on-error: 255, 255, 255;
+  --error-container: 255, 204, 204;
+  --on-error-container: 51, 0, 0;
+  --warning: 204, 204, 0;
+  --warning-gradient: 255, 255, 0;
+  --on-warning: 255, 255, 255;
+  --warning-container: 255, 255, 204;
+  --on-warning-container: 51, 51, 0;
+  --info: 0, 0, 204;
+  --info-gradient: 0, 0, 255;
+  --on-info: 255, 255, 255;
+  --info-container: 204, 204, 255;
+  --on-info-container: 0, 0, 51;
+  --success: 0, 204, 0;
+  --success-gradient: 0, 255, 0;
+  --on-success: 255, 255, 255;
+  --success-container: 204, 255, 204;
+  --on-success-container: 0, 51, 0;
+  --surface-dim: 222, 222, 222;
+  --surface: 250, 250, 250;
+  --surface-bright: 250, 250, 250;
+  --surface-container-lowest: 255, 255, 255;
+  --surface-container-low: 245, 245, 245;
+  --surface-container: 240, 240, 240;
+  --surface-container-high: 235, 235, 235;
+  --surface-container-highest: 230, 230, 230;
+  --on-surface: 26, 26, 26;
+  --inverse-surface: 51, 51, 51;
+  --on-inverse-surface: 242, 242, 242;
+  --on-surface-variant: 77, 73, 80;
+  --outline: 128, 122, 133;
+  --outline-variant: 204, 202, 206;
+}
+
+a:not(.btn) {
+  color: rgb(var(--primary));
+}
+
+.w100 {
+  width: 100%;
+}
+
+.h100 {
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  gap: 1rem;
+}
+.container.row {
+  flex-direction: row;
+}
+.container.col {
+  flex-direction: column;
+}
+.container.center {
+  justify-content: center;
+  align-items: center;
+}
+.container.start {
+  align-items: self-start;
+}
+
+.box, .dashboard li {
+  padding: 1rem;
+  border-radius: var(--app-border-radius);
+}
+
+.btn,
+input[type=button],
+button {
+  display: inline-block;
+  padding: 0.75rem 1.7rem;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: var(--app-border-radius);
+  --app-border-width: 0;
+  --outline: transparent;
+  border: var(--app-border-width) solid var(--outline);
+  font-weight: 700;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --app-bg: rgb(var(--surface-container-low));
+  --app-text: rgb(var(--primary));
+  --app-elevation: var(--elevation-1);
+}
+.btn.small,
+input[type=button].small,
+button.small {
+  padding: 0.3rem 0.5rem;
+}
+.btn[disabled],
+input[type=button][disabled],
+button[disabled] {
+  --app-bg: rgba(var(--on-surface), 0.12);
+  --app-text: rgba(var(--on-surface), 0.38);
+  --app-elevation: var(--elevation-0);
+}
+.btn[disabled]:hover, .btn[disabled]:active, .btn[disabled]:focus,
+input[type=button][disabled]:hover,
+input[type=button][disabled]:active,
+input[type=button][disabled]:focus,
+button[disabled]:hover,
+button[disabled]:active,
+button[disabled]:focus {
+  --app-bg: rgba(var(--on-surface), 0.12);
+  --app-text: rgba(var(--on-surface), 0.38);
+}
+.btn:hover,
+input[type=button]:hover,
+button:hover {
+  --app-bg: rgba(var(--primary), 0.08);
+  --app-text: rgb(var(--primary));
+  --app-elevation: var(--elevation-2);
+}
+.btn:active, .btn:focus,
+input[type=button]:active,
+input[type=button]:focus,
+button:active,
+button:focus {
+  --app-bg: rgba(var(--primary), 0.12);
+  --app-text: rgb(var(--primary));
+  --app-elevation: var(--elevation-1);
+}
+.btn > span,
+input[type=button] > span,
+button > span {
+  margin-right: 8px;
+  font-weight: 700;
+}
+.btn > span > .material-symbols-outlined,
+input[type=button] > span > .material-symbols-outlined,
+button > span > .material-symbols-outlined {
+  vertical-align: bottom;
+}
+
+input,
+textarea {
+  background: rgb(var(--surface-container-highest));
+  color: rgb(var(--app-text));
+  padding: 0.5rem;
+  margin-top: 8px;
+  display: block;
+  width: 100%;
+  border-radius: var(--app-border-radius);
+  border: var(--app-border-width) solid rgb(var(--outline));
+}
+input[disabled],
+textarea[disabled] {
+  background: rgba(0, 0, 0, 0.08);
+}
+input:focus,
+textarea:focus {
+  border-color: rgb(var(--primary));
+}
+input:invalid,
+textarea:invalid {
+  border-color: var(--error);
+}
+input:focus, input:valid, input:not(:placeholder-shown),
+textarea:focus,
+textarea:valid,
+textarea:not(:placeholder-shown) {
+  outline: none;
+}
+input:focus ~ label, input:valid ~ label, input:not(:placeholder-shown) ~ label,
+textarea:focus ~ label,
+textarea:valid ~ label,
+textarea:not(:placeholder-shown) ~ label {
+  top: -1px;
+  left: 1em;
+  padding: 0 4px;
+  font-size: 0.85em !important;
+  font-weight: 700;
+  background: var(--app-bg);
+}
+
+.errorlist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.errorlist li {
+  --app-bg: rgb(var(--error));
+  --app-text: rgb(var(--on-error));
+  padding: 0.5rem;
+  border-radius: var(--app-border-radius);
+}
+
+header {
+  --app-bg: rgb(var(--primary));
+  --app-text: rgb(var(--on-primary));
+  padding: 0.5rem 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+}
+
+main,
+.main {
+  padding: 1rem;
+}
+
+.list,
+.menu {
+  --app-text: rgb(var(--on-surface));
+  margin: 0;
+  padding: 8px 0;
+  list-style: none;
+  display: inline-block;
+}
+.list > .item,
+.menu > .item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--app-space-gap);
+  cursor: pointer;
+  text-decoration: none;
+  line-height: 20px;
+  font-size: 14px;
+  transition: background 300ms;
+}
+.list > .item:hover:not(.divider),
+.menu > .item:hover:not(.divider) {
+  background: rgba(var(--on-surface), 0.08);
+}
+.list > .item.divider,
+.menu > .item.divider {
+  min-height: inherit;
+  padding: calc(var(--app-space-gap) / 2) 0;
+  gap: 0;
+  font-size: 12px;
+}
+.list > .item > .content,
+.menu > .item > .content {
+  flex: auto;
+}
+.list > .item > .vn,
+.menu > .item > .vn {
+  color: rgb(var(--on-surface-variant));
+}
+
+.list {
+  --app-bg: rgb(var(--surface));
+}
+.list .item {
+  min-height: 56px;
+  padding: 8px 24px 8px 16px;
+}
+.list .item:has(.content > .sup) {
+  min-height: 72px;
+  align-items: flex-start;
+}
+.list .item .sup {
+  color: rgb(var(--on-surface-variant));
+  font-size: 12px;
+  padding-top: 4px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 14px;
+}
+
+.menu {
+  --app-bg: rgb(var(--surface-container));
+  --app-elevation: var(--elevation-2);
+  min-width: 112px;
+  max-width: 280px;
+  border-radius: var(--app-border-radius);
+}
+.menu > .item {
+  min-height: 48px;
+  padding: 0 12px;
+}
+.menu > .content {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+  border-spacing: 0;
+  border: 1px solid rgb(var(--outline));
+  border-radius: var(--app-border-radius);
+}
+.table thead {
+  --app-bg: rgb(var(--inverse-surface));
+  --app-text: rgb(var(--on-inverse-surface));
+  border-top-left-radius: var(--app-border-radius);
+  border-top-right-radius: var(--app-border-radius);
+}
+.table thead tr:first-child th:first-child {
+  border-top-left-radius: var(--app-border-radius);
+}
+.table thead tr:first-child th:last-child {
+  border-top-right-radius: var(--app-border-radius);
+}
+.table tbody {
+  border-bottom-left-radius: var(--app-border-radius);
+  border-bottom-right-radius: var(--app-border-radius);
+}
+.table tbody tr:first-child th:first-child {
+  border-bottom-left-radius: var(--app-border-radius);
+}
+.table tbody tr:first-child th:last-child {
+  border-bottom-right-radius: var(--app-border-radius);
+}
+.table th {
+  border-top: none !important;
+}
+.table th,
+.table td {
+  padding: 0.5rem;
+  text-align: center;
+  border: 1px solid rgb(var(--outline));
+  margin-right: -1px;
+  margin-bottom: -1px;
+  border-bottom: none;
+  border-right: none;
+}
+.table th:first-child,
+.table td:first-child {
+  border-left-color: transparent;
+}
+
+.logo {
+  color: rgb(var(--on-primary)) !important;
+  text-decoration: none;
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.x .lbl-toggle, .surface-container-highest, .surface-container-high, .surface-container, .surface-container-low, .surface-container-lowest, .surface-bright, .surface, .surface-dim, .box, .dashboard li, .btn,
+input[type=button],
+button, .errorlist li, header, .list,
+.menu, .table thead {
+  background-color: var(--app-bg);
+  color: var(--app-text);
+}
+
+.primary, .dashboard li {
+  --app-bg: rgb(var(--primary)) !important;
+  --app-text: rgb(var(--on-primary)) !important;
+}
+
+.on-primary {
+  --app-bg: rgb(var(--on-primary)) !important;
+  --app-text: rgb(var(--primary)) !important;
+}
+
+.primary-container {
+  --app-bg: rgb(var(--primary-container)) !important;
+  --app-text: rgb(var(--on-primary-container)) !important;
+}
+
+.on-primary-container {
+  --app-bg: rgb(var(--on-primary-container)) !important;
+  --app-text: rgb(var(--primary-container)) !important;
+}
+
+.primary-text {
+  --app-text: rgb(var(--primary)) !important;
+  color: rgb(var(--primary)) !important;
+}
+.inverse .primary-text {
+  --app-text: rgb(var(--inverse-primary)) !important;
+}
+
+.btn.primary:hover, .dashboard li.btn:hover,
+button.primary:hover,
+input[type=button].primary:hover {
+  --app-bg: rgba(var(--primary), 0.92) !important;
+  --app-text: rgb(var(--on-primary)) !important;
+  box-shadow: var(--elevation-1);
+}
+.btn.primary:active, .dashboard li.btn:active, .btn.primary:focus, .dashboard li.btn:focus,
+button.primary:active,
+button.primary:focus,
+input[type=button].primary:active,
+input[type=button].primary:focus {
+  --app-bg: rgba(var(--primary), 0.88) !important;
+  --app-text: rgb(var(--on-primary)) !important;
+  box-shadow: var(--elevation-0);
+}
+.btn.on-primary:hover,
+button.on-primary:hover,
+input[type=button].on-primary:hover {
+  --app-bg: rgba(var(--on-primary), 0.92) !important;
+  --app-text: rgb(var(--primary)) !important;
+  box-shadow: var(--elevation-1);
+}
+.btn.on-primary:active, .btn.on-primary:focus,
+button.on-primary:active,
+button.on-primary:focus,
+input[type=button].on-primary:active,
+input[type=button].on-primary:focus {
+  --app-bg: rgba(var(--on-primary), 0.88) !important;
+  --app-text: rgb(var(--primary)) !important;
+  box-shadow: var(--elevation-0);
+}
+.btn.primary-container:hover,
+button.primary-container:hover,
+input[type=button].primary-container:hover {
+  --app-bg: rgba(var(--primary-container), 0.92) !important;
+  --app-text: rgb(var(--on-primary-container));
+  box-shadow: var(--elevation-1);
+}
+.btn.primary-container:active, .btn.primary-container:focus,
+button.primary-container:active,
+button.primary-container:focus,
+input[type=button].primary-container:active,
+input[type=button].primary-container:focus {
+  --app-bg: rgba(var(--primary-container), 0.88) !important;
+  --app-text: rgb(var(--on-primary-container)) !important;
+  box-shadow: var(--elevation-0);
+}
+.btn.on-primary-container:hover,
+button.on-primary-container:hover,
+input[type=button].on-primary-container:hover {
+  --app-bg: rgba(var(--on-primary-container), 0.92) !important;
+  --app-text: rgb(var(--primary-container)) !important;
+  box-shadow: var(--elevation-1);
+}
+.btn.on-primary-container:active, .btn.on-primary-container:focus,
+button.on-primary-container:active,
+button.on-primary-container:focus,
+input[type=button].on-primary-container:active,
+input[type=button].on-primary-container:focus {
+  --app-bg: rgba(var(--on-primary-container), 0.88) !important;
+  --app-text: rgb(var(--primary-container)) !important;
+  box-shadow: var(--elevation-0);
+}
+
+.error, .x .lbl-toggle {
+  --app-bg: rgb(var(--error)) !important;
+  --app-text: rgb(var(--on-error)) !important;
+}
+
+.on-error {
+  --app-bg: rgb(var(--on-error)) !important;
+  --app-text: rgb(var(--error)) !important;
+}
+
+.error-container {
+  --app-bg: rgb(var(--error-container)) !important;
+  --app-text: rgb(var(--on-error-container)) !important;
+}
+
+.on-error-container {
+  --app-bg: rgb(var(--on-error-container)) !important;
+  --app-text: rgb(var(--error-container)) !important;
+}
+
+.error-text {
+  --app-text: rgb(var(--error)) !important;
+  color: rgb(var(--error)) !important;
+}
+.inverse .error-text {
+  --app-text: rgb(var(--inverse-error)) !important;
+}
+
+.btn.error:hover, .x .btn.lbl-toggle:hover,
+button.error:hover,
+.x button.lbl-toggle:hover,
+input[type=button].error:hover,
+.x input[type=button].lbl-toggle:hover {
+  --app-bg: rgba(var(--error), 0.92) !important;
+  --app-text: rgb(var(--on-error)) !important;
+  box-shadow: var(--elevation-1);
+}
+.btn.error:active, .x .btn.lbl-toggle:active, .btn.error:focus, .x .btn.lbl-toggle:focus,
+button.error:active,
+.x button.lbl-toggle:active,
+button.error:focus,
+.x button.lbl-toggle:focus,
+input[type=button].error:active,
+.x input[type=button].lbl-toggle:active,
+input[type=button].error:focus,
+.x input[type=button].lbl-toggle:focus {
+  --app-bg: rgba(var(--error), 0.88) !important;
+  --app-text: rgb(var(--on-error)) !important;
+  box-shadow: var(--elevation-0);
+}
+.btn.on-error:hover,
+button.on-error:hover,
+input[type=button].on-error:hover {
+  --app-bg: rgba(var(--on-error), 0.92) !important;
+  --app-text: rgb(var(--error)) !important;
+  box-shadow: var(--elevation-1);
+}
+.btn.on-error:active, .btn.on-error:focus,
+button.on-error:active,
+button.on-error:focus,
+input[type=button].on-error:active,
+input[type=button].on-error:focus {
+  --app-bg: rgba(var(--on-error), 0.88) !important;
+  --app-text: rgb(var(--error)) !important;
+  box-shadow: var(--elevation-0);
+}
+.btn.error-container:hover,
+button.error-container:hover,
+input[type=button].error-container:hover {
+  --app-bg: rgba(var(--error-container), 0.92) !important;
+  --app-text: rgb(var(--on-error-container));
+  box-shadow: var(--elevation-1);
+}
+.btn.error-container:active, .btn.error-container:focus,
+button.error-container:active,
+button.error-container:focus,
+input[type=button].error-container:active,
+input[type=button].error-container:focus {
+  --app-bg: rgba(var(--error-container), 0.88) !important;
+  --app-text: rgb(var(--on-error-container)) !important;
+  box-shadow: var(--elevation-0);
+}
+.btn.on-error-container:hover,
+button.on-error-container:hover,
+input[type=button].on-error-container:hover {
+  --app-bg: rgba(var(--on-error-container), 0.92) !important;
+  --app-text: rgb(var(--error-container)) !important;
+  box-shadow: var(--elevation-1);
+}
+.btn.on-error-container:active, .btn.on-error-container:focus,
+button.on-error-container:active,
+button.on-error-container:focus,
+input[type=button].on-error-container:active,
+input[type=button].on-error-container:focus {
+  --app-bg: rgba(var(--on-error-container), 0.88) !important;
+  --app-text: rgb(var(--error-container)) !important;
+  box-shadow: var(--elevation-0);
+}
+
+.warning {
+  --app-bg: rgb(var(--warning)) !important;
+  --app-text: rgb(var(--on-warning)) !important;
+}
+
+.on-warning {
+  --app-bg: rgb(var(--on-warning)) !important;
+  --app-text: rgb(var(--warning)) !important;
+}
+
+.warning-container {
+  --app-bg: rgb(var(--warning-container)) !important;
+  --app-text: rgb(var(--on-warning-container)) !important;
+}
+
+.on-warning-container {
+  --app-bg: rgb(var(--on-warning-container)) !important;
+  --app-text: rgb(var(--warning-container)) !important;
+}
+
+.warning-text {
+  --app-text: rgb(var(--warning)) !important;
+  color: rgb(var(--warning)) !important;
+}
+.inverse .warning-text {
+  --app-text: rgb(var(--inverse-warning)) !important;
+}
+
+.btn.warning:hover,
+button.warning:hover,
+input[type=button].warning:hover {
+  --app-bg: rgba(var(--warning), 0.92) !important;
+  --app-text: rgb(var(--on-warning)) !important;
+  box-shadow: var(--elevation-1);
+}
+.btn.warning:active, .btn.warning:focus,
+button.warning:active,
+button.warning:focus,
+input[type=button].warning:active,
+input[type=button].warning:focus {
+  --app-bg: rgba(var(--warning), 0.88) !important;
+  --app-text: rgb(var(--on-warning)) !important;
+  box-shadow: var(--elevation-0);
+}
+.btn.on-warning:hover,
+button.on-warning:hover,
+input[type=button].on-warning:hover {
+  --app-bg: rgba(var(--on-warning), 0.92) !important;
+  --app-text: rgb(var(--warning)) !important;
+  box-shadow: var(--elevation-1);
+}
+.btn.on-warning:active, .btn.on-warning:focus,
+button.on-warning:active,
+button.on-warning:focus,
+input[type=button].on-warning:active,
+input[type=button].on-warning:focus {
+  --app-bg: rgba(var(--on-warning), 0.88) !important;
+  --app-text: rgb(var(--warning)) !important;
+  box-shadow: var(--elevation-0);
+}
+.btn.warning-container:hover,
+button.warning-container:hover,
+input[type=button].warning-container:hover {
+  --app-bg: rgba(var(--warning-container), 0.92) !important;
+  --app-text: rgb(var(--on-warning-container));
+  box-shadow: var(--elevation-1);
+}
+.btn.warning-container:active, .btn.warning-container:focus,
+button.warning-container:active,
+button.warning-container:focus,
+input[type=button].warning-container:active,
+input[type=button].warning-container:focus {
+  --app-bg: rgba(var(--warning-container), 0.88) !important;
+  --app-text: rgb(var(--on-warning-container)) !important;
+  box-shadow: var(--elevation-0);
+}
+.btn.on-warning-container:hover,
+button.on-warning-container:hover,
+input[type=button].on-warning-container:hover {
+  --app-bg: rgba(var(--on-warning-container), 0.92) !important;
+  --app-text: rgb(var(--warning-container)) !important;
+  box-shadow: var(--elevation-1);
+}
+.btn.on-warning-container:active, .btn.on-warning-container:focus,
+button.on-warning-container:active,
+button.on-warning-container:focus,
+input[type=button].on-warning-container:active,
+input[type=button].on-warning-container:focus {
+  --app-bg: rgba(var(--on-warning-container), 0.88) !important;
+  --app-text: rgb(var(--warning-container)) !important;
+  box-shadow: var(--elevation-0);
+}
+
+.info {
+  --app-bg: rgb(var(--info)) !important;
+  --app-text: rgb(var(--on-info)) !important;
+}
+
+.on-info {
+  --app-bg: rgb(var(--on-info)) !important;
+  --app-text: rgb(var(--info)) !important;
+}
+
+.info-container {
+  --app-bg: rgb(var(--info-container)) !important;
+  --app-text: rgb(var(--on-info-container)) !important;
+}
+
+.on-info-container {
+  --app-bg: rgb(var(--on-info-container)) !important;
+  --app-text: rgb(var(--info-container)) !important;
+}
+
+.info-text {
+  --app-text: rgb(var(--info)) !important;
+  color: rgb(var(--info)) !important;
+}
+.inverse .info-text {
+  --app-text: rgb(var(--inverse-info)) !important;
+}
+
+.btn.info:hover,
+button.info:hover,
+input[type=button].info:hover {
+  --app-bg: rgba(var(--info), 0.92) !important;
+  --app-text: rgb(var(--on-info)) !important;
+  box-shadow: var(--elevation-1);
+}
+.btn.info:active, .btn.info:focus,
+button.info:active,
+button.info:focus,
+input[type=button].info:active,
+input[type=button].info:focus {
+  --app-bg: rgba(var(--info), 0.88) !important;
+  --app-text: rgb(var(--on-info)) !important;
+  box-shadow: var(--elevation-0);
+}
+.btn.on-info:hover,
+button.on-info:hover,
+input[type=button].on-info:hover {
+  --app-bg: rgba(var(--on-info), 0.92) !important;
+  --app-text: rgb(var(--info)) !important;
+  box-shadow: var(--elevation-1);
+}
+.btn.on-info:active, .btn.on-info:focus,
+button.on-info:active,
+button.on-info:focus,
+input[type=button].on-info:active,
+input[type=button].on-info:focus {
+  --app-bg: rgba(var(--on-info), 0.88) !important;
+  --app-text: rgb(var(--info)) !important;
+  box-shadow: var(--elevation-0);
+}
+.btn.info-container:hover,
+button.info-container:hover,
+input[type=button].info-container:hover {
+  --app-bg: rgba(var(--info-container), 0.92) !important;
+  --app-text: rgb(var(--on-info-container));
+  box-shadow: var(--elevation-1);
+}
+.btn.info-container:active, .btn.info-container:focus,
+button.info-container:active,
+button.info-container:focus,
+input[type=button].info-container:active,
+input[type=button].info-container:focus {
+  --app-bg: rgba(var(--info-container), 0.88) !important;
+  --app-text: rgb(var(--on-info-container)) !important;
+  box-shadow: var(--elevation-0);
+}
+.btn.on-info-container:hover,
+button.on-info-container:hover,
+input[type=button].on-info-container:hover {
+  --app-bg: rgba(var(--on-info-container), 0.92) !important;
+  --app-text: rgb(var(--info-container)) !important;
+  box-shadow: var(--elevation-1);
+}
+.btn.on-info-container:active, .btn.on-info-container:focus,
+button.on-info-container:active,
+button.on-info-container:focus,
+input[type=button].on-info-container:active,
+input[type=button].on-info-container:focus {
+  --app-bg: rgba(var(--on-info-container), 0.88) !important;
+  --app-text: rgb(var(--info-container)) !important;
+  box-shadow: var(--elevation-0);
+}
+
+.success {
+  --app-bg: rgb(var(--success)) !important;
+  --app-text: rgb(var(--on-success)) !important;
+}
+
+.on-success {
+  --app-bg: rgb(var(--on-success)) !important;
+  --app-text: rgb(var(--success)) !important;
+}
+
+.success-container {
+  --app-bg: rgb(var(--success-container)) !important;
+  --app-text: rgb(var(--on-success-container)) !important;
+}
+
+.on-success-container {
+  --app-bg: rgb(var(--on-success-container)) !important;
+  --app-text: rgb(var(--success-container)) !important;
+}
+
+.success-text {
+  --app-text: rgb(var(--success)) !important;
+  color: rgb(var(--success)) !important;
+}
+.inverse .success-text {
+  --app-text: rgb(var(--inverse-success)) !important;
+}
+
+.btn.success:hover,
+button.success:hover,
+input[type=button].success:hover {
+  --app-bg: rgba(var(--success), 0.92) !important;
+  --app-text: rgb(var(--on-success)) !important;
+  box-shadow: var(--elevation-1);
+}
+.btn.success:active, .btn.success:focus,
+button.success:active,
+button.success:focus,
+input[type=button].success:active,
+input[type=button].success:focus {
+  --app-bg: rgba(var(--success), 0.88) !important;
+  --app-text: rgb(var(--on-success)) !important;
+  box-shadow: var(--elevation-0);
+}
+.btn.on-success:hover,
+button.on-success:hover,
+input[type=button].on-success:hover {
+  --app-bg: rgba(var(--on-success), 0.92) !important;
+  --app-text: rgb(var(--success)) !important;
+  box-shadow: var(--elevation-1);
+}
+.btn.on-success:active, .btn.on-success:focus,
+button.on-success:active,
+button.on-success:focus,
+input[type=button].on-success:active,
+input[type=button].on-success:focus {
+  --app-bg: rgba(var(--on-success), 0.88) !important;
+  --app-text: rgb(var(--success)) !important;
+  box-shadow: var(--elevation-0);
+}
+.btn.success-container:hover,
+button.success-container:hover,
+input[type=button].success-container:hover {
+  --app-bg: rgba(var(--success-container), 0.92) !important;
+  --app-text: rgb(var(--on-success-container));
+  box-shadow: var(--elevation-1);
+}
+.btn.success-container:active, .btn.success-container:focus,
+button.success-container:active,
+button.success-container:focus,
+input[type=button].success-container:active,
+input[type=button].success-container:focus {
+  --app-bg: rgba(var(--success-container), 0.88) !important;
+  --app-text: rgb(var(--on-success-container)) !important;
+  box-shadow: var(--elevation-0);
+}
+.btn.on-success-container:hover,
+button.on-success-container:hover,
+input[type=button].on-success-container:hover {
+  --app-bg: rgba(var(--on-success-container), 0.92) !important;
+  --app-text: rgb(var(--success-container)) !important;
+  box-shadow: var(--elevation-1);
+}
+.btn.on-success-container:active, .btn.on-success-container:focus,
+button.on-success-container:active,
+button.on-success-container:focus,
+input[type=button].on-success-container:active,
+input[type=button].on-success-container:focus {
+  --app-bg: rgba(var(--on-success-container), 0.88) !important;
+  --app-text: rgb(var(--success-container)) !important;
+  box-shadow: var(--elevation-0);
+}
+
+.surface-dim {
+  --app-bg: rgb(var(--surface-dim)) !important;
+  --app-text: rgb(--on-suface) !important;
+}
+
+.surface {
+  --app-bg: rgb(var(--surface)) !important;
+  --app-text: rgb(--on-suface) !important;
+}
+
+.surface-bright {
+  --app-bg: rgb(var(--surface-bright)) !important;
+  --app-text: rgb(--on-suface) !important;
+}
+
+.surface-container-lowest {
+  --app-bg: rgb(var(--surface-container-lowest)) !important;
+  --app-text: rgb(--on-suface) !important;
+}
+
+.surface-container-low {
+  --app-bg: rgb(var(--surface-container-low)) !important;
+  --app-text: rgb(--on-suface) !important;
+}
+
+.surface-container {
+  --app-bg: rgb(var(--surface-container)) !important;
+  --app-text: rgb(--on-suface) !important;
+}
+
+.surface-container-high {
+  --app-bg: rgb(var(--surface-container-high)) !important;
+  --app-text: rgb(--on-suface) !important;
+}
+
+.surface-container-highest {
+  --app-bg: rgb(var(--surface-container-highest)) !important;
+  --app-text: rgb(--on-suface) !important;
+}
+
+.mso {
+  font-family: "Material Symbols Outlined";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+}
+
+.t2 {
+  width: 100%;
+}
+.t2 td {
+  padding: 4px 0;
+}
+
+.x input[type=checkbox] {
+  display: none;
+}
+.x .wrap-collabsible {
+  margin: 1.2rem 0;
+}
+.x .lbl-toggle {
+  display: block;
+  font-weight: bold;
+  font-family: monospace;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 1rem;
+  cursor: pointer;
+  border-radius: 7px;
+  transition: all 0.25s ease-out;
+}
+.x .lbl-toggle::before {
+  content: " ";
+  display: inline-block;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 5px solid currentColor;
+  vertical-align: middle;
+  margin-right: 0.7rem;
+  transform: translateY(-2px);
+  transition: transform 0.2s ease-out;
+}
+.x .toggle:checked + .lbl-toggle::before {
+  transform: rotate(90deg) translateX(-3px);
+}
+.x .collapsible-content {
+  max-height: 0px;
+  overflow: hidden;
+  transition: max-height 0.25s ease-in-out;
+}
+.x .toggle:checked + .lbl-toggle + .collapsible-content {
+  max-height: 350px;
+}
+.x .toggle:checked + .lbl-toggle {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.x .collapsible-content .content-inner {
+  background: rgba(0, 105, 255, 0.2);
+  border-bottom: 1px solid rgba(0, 105, 255, 0.45);
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+}
+.x .collapsible-content p {
+  margin-bottom: 0;
+}
+
+.dashboard {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  gap: 1rem;
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  flex-wrap: wrap;
+}
+.dashboard li {
+  padding: 0;
+  flex: 33.3333333333%;
+  transition: background 300ms;
+}
+.dashboard li:hover {
+  --app-bg: rgb(var(--primary-gradient)) !important;
+}
+.dashboard li a {
+  padding: 1rem;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  vertical-align: middle;
+  color: var(--app-text) !important;
+  text-decoration: none;
+}
+
+/*# sourceMappingURL=theme.css.map */

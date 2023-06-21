@@ -1,0 +1,47 @@
+{% extends 'internal.html' %}
+{% load importer_extras %}
+
+{% block internal_content %}
+<div class="container center w100">
+    <div style="flex: auto; max-width: 1200px">
+        <ul class="dashboard">
+            <li>
+                <a href="/students/">
+                    <div class="mso">person</div>
+                    <br/>
+                    Students Importer
+                </a>
+            </li>
+            <li>
+                <a href="/teachers/">
+                    <span class="mso">school</span>
+                    <br/>
+                    Teachers Importer
+                </a>
+            </li>
+            <li>
+                <a href="/courses/">
+                    <span class="mso">groups</span>
+                    <br/>
+                    Courses
+                </a>
+            </li>
+            <li>
+                <a href="/grades/">
+                    <span class="mso">checklist</span>
+                    <br/>
+                    Grades Importer
+                </a>
+            </li>
+            <li>
+                <a href="/api/">
+                    <span class="mso">api</span>
+                    <br/>
+                    School <br/>
+                    Rest API
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+{% endblock %}}

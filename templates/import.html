@@ -1,0 +1,181 @@
+{% extends 'internal.html' %}
+{% load static %}
+{% load importer_extras %}
+
+{% block internal_content %}
+<div style="margin: 1rem 0">
+    <a class="btn small primary mso" href="{% url namespace|urlc:'importer' %}">arrow_back</a>
+    <span class="primary-text" style="font-size: 2em; margin-left: 1rem">
+        Import started on {{ instance.start_date}}
+    </span>
+</div>
+<div class="container start w100 h100">
+    <div class="box surface-container" style="min-width: 360px">
+        <table class="t2">
+            <tbody>
+                <tr>
+                    <td><b>Status:</b></td>
+                    <td>
+                        <span class="box primary {instance.status}" style="padding: 4px">
+                            {{ instance.get_status_display }}
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Step:</b></td>
+                    <td>{{ instance.get_step_display }}</td>
+                </tr>
+                <tr>
+                    <td><b>Model:</b></td>
+                    <td>{{ instance.model_name }}</td>
+                </tr>
+                <tr>
+                    <td><b>Create by:</b>
+                    <td>{{ instance.created_by }}</td>
+                </tr>
+                <tr>
+                    <td><b>Start Date:</b></td>
+                    <td>{{ instance.start_date }}</td>
+                </tr>
+                <tr>
+                    <td><b>End Date:</b></td>
+                    <td>{% if instance.end_date is not None %}{{ instance.end_date }}{% else %}-{% endif %}</td>
+                </tr>
+                <tr>
+                    <td><b>Total lines:</b></td>
+                    <td>{% if instance.total_lines is not None %}{{ instance.total_lines }}{% else %}-{% endif %}</td>
+                </tr>
+                <tr>
+                    <td><b>Imported lines:</b>
+                    <td>{{ instance.imported_lines }}</td>
+                </tr>
+                <tr>
+                    <td><b>Task ID:</b>
+                    <td>{% if instance.task_id is not None %}{{ instance.task_id }}{% else %}-{% endif %}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="w100 box surface-container" style="flex: auto">
+        {% if instance.status == "in_progress" %}
+        <p>This page will automatically reload every 3 seconds while the import is in progress.</p>
+        {% endif %}
+        <script>
+            (() => {
+                setTimeout(reload, 3000)
+
+                function reload() {
+                    fetch('{% url namespace|urlc:'check_import' import_id=instance.id %}')
+                        .then(function (response) {
+                            if (response.status === 200)
+                                return response.json();
+                            else
+                                console.log('Error al consultar el estado de importación');
+
+                        })
+                        .then(function (data) {
+                            if (data.status === "in_progress" || data.status === "created")
+                                location.reload();
+                            else
+                                console.log('El estado de importación no es "in_progress". No se recargará la página.');
+                        })
+                        .catch(function (error) {
+                            console.log('Error de red:', error);
+                        });
+                }
+            })();
+        </script>
+        {% if valids %}
+        <div>
+            <h3>Valid rows:</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>row</th>
+                        {% for key, value in valids.0.data.items %}
+                        <td>{{ key }}</td>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for valid in valids %}
+                    <tr>
+                        <td>{{ valid.order }}</td>
+                        {% for key, value in valid.data.items %}
+                        <td>{{ value }}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+        {% if invalids %}
+        <div>
+            <h3>Invalid rows:</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Row</th>
+                        <th>Data</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for invalid in invalids %}
+                    <tr>
+                        <td>{{ invalid.order }}</td>
+                        <td class="x">
+                            <div>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+
+                                            {% for key, value in invalids.0.data.items %}
+                                            <td>{{ key }}</td>
+                                            {% endfor %}
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+
+                                            {% for key, value in invalid.data.items %}
+                                            <td>{{ value }}</td>
+                                            {% endfor %}
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                            <div class="wrap-collabsible">
+                                <input id="collapsible-{{ invalid.order }}" class="toggle" type="checkbox">
+                                <label for="collapsible-{{ invalid.order }}" class="lbl-toggle">errors</label>
+                                <div class="collapsible-content">
+                                    <div class="content-inner">
+                                        <ul class="list w100">
+                                            {% for key, value in invalid.errors.items %}
+                                            <li class="item"><b>{{ key }}:</b> <span class="content">{{ value }}</span>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+        {% if file_error %}
+        <h3>File Error</h3>
+        <pre>{{ file_error }}</pre>
+        {% endif %}
+        {% if creation_error %}
+        <h3>Creation Error</h3>
+        <pre>{{ creation_error }}</pre>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
